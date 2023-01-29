@@ -25,7 +25,7 @@ function App() {
   const { userInfo } = userLogin;
 
   useEffect(() => {
-    if (userInfo && userInfo.isAdmin) {
+    if (userInfo && userInfo.isSeller) {
       dispatch(listProducts());
       dispatch(listOrders());
     }
@@ -36,15 +36,9 @@ function App() {
         <Switch>
           <PrivateRouter path="/" component={HomeScreen} exact />
           <PrivateRouter path="/products" component={ProductScreen} />
-          <PrivateRouter path="/category" component={CategoriesScreen} />
           <PrivateRouter path="/orders" component={OrderScreen} />
           <PrivateRouter path="/order/:id" component={OrderDetailScreen} />
-          <PrivateRouter path="/addproduct" component={AddProduct} />
           <PrivateRouter path="/users" component={UsersScreen} />
-          <PrivateRouter
-            path="/product/:id/edit"
-            component={ProductEditScreen}
-          />
           <Route path="/login" component={Login} />
           <Route path="*" component={NotFound} />
         </Switch>
