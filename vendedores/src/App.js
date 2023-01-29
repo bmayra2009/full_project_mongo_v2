@@ -5,15 +5,13 @@ import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/productScreen";
-import CategoriesScreen from "./screens/CategoriesScreen";
 import OrderScreen from "./screens/OrderScreen";
 import OrderDetailScreen from "./screens/OrderDetailScreen";
-import AddProduct from "./screens/AddProduct";
 import Login from "./screens/LoginScreen";
 import UsersScreen from "./screens/UsersScreen";
-import ProductEditScreen from "./screens/ProductEditScreen";
 import NotFound from "./screens/NotFound";
 import PrivateRouter from "./PrivateRouter";
+import CartScreen from "./screens/CartScreen";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "./Redux/Actions/ProductActions";
 import { listOrders } from "./Redux/Actions/OrderActions";
@@ -39,6 +37,7 @@ function App() {
           <PrivateRouter path="/orders" component={OrderScreen} />
           <PrivateRouter path="/order/:id" component={OrderDetailScreen} />
           <PrivateRouter path="/users" component={UsersScreen} />
+          <PrivateRouter path="/cart/:id?" component={CartScreen} />
           <Route path="/login" component={Login} />
           <Route path="*" component={NotFound} />
         </Switch>
