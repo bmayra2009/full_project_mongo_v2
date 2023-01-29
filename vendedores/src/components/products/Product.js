@@ -21,7 +21,7 @@ const Product = (props) => {
             <img src={product.image} alt="Product" />
           </Link>
           <div className="info-wrap">
-            <Link to="#" className="title text-truncate">
+            <Link to={`/productos/${product._id}`} className="title text-truncate">
               {product.name}
             </Link>
             <div className="price mb-2">${product.price}</div>

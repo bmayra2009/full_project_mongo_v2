@@ -3,11 +3,13 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { userListReducer, userLoginReducer } from "./Reducers/userReducers";
 import {
+  productCreateReviewReducer,
   productCreateReducer,
   productDeleteReducer,
   productEditReducer,
   productListReducer,
   productUpdateReducer,
+  productDetailsReducer,
 } from "./Reducers/ProductReducers";
 import { cartReducer } from "./Reducers/CartReducers";
 import {
@@ -19,8 +21,10 @@ import {
 const reducer = combineReducers({
   userLogin: userLoginReducer,
   userList: userListReducer,
+  productReviewCreate: productCreateReviewReducer,
   cart: cartReducer,
   productList: productListReducer,
+  productDetails: productDetailsReducer,
   productDelete: productDeleteReducer,
   productCreate: productCreateReducer,
   productEdit: productEditReducer,
