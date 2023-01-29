@@ -10,20 +10,16 @@ const Main = () => {
   const { loading, error, orders } = orderList;
   const productList = useSelector((state) => state.productList);
   const { products } = productList;
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
   return (
     <>
       <section className="content-main">
         <div className="content-header">
-          <h2 className="content-title"> Dashboard </h2>
+          <h2 className="content-title"> Hola, {userInfo.name} </h2>
         </div>
         {/* Top Total */}
         <TopTotal orders={orders} products={products} />
-
-        <div className="row">
-          {/* STATICS */}
-          <SaleStatistics />
-          <ProductsStatistics />
-        </div>
 
         {/* LATEST ORDER */}
         <div className="card mb-4 shadow-sm">
