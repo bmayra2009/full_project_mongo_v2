@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Product from "./Product";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,11 +9,27 @@ import Message from "../LoadingError/Error";
 const MainProducts = () => {
   const dispatch = useDispatch();
 
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchParam] = useState(["description"]);
+
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
 
   const productDelete = useSelector((state) => state.productDelete);
   const { error: errorDelete, success: successDelete } = productDelete;
+
+  function search(products) {
+    return products.filter((product) => {
+        return searchParam.some((newProduct) => {
+            return (
+              product[newProduct]
+                    .toString()
+                    .toLowerCase()
+                    .indexOf(searchQuery.toLowerCase()) > -1
+            );
+        });
+    });
+  }
 
   useEffect(() => {
     dispatch(listProducts());
@@ -36,8 +52,10 @@ const MainProducts = () => {
             <div className="col-lg-4 col-md-6 me-auto ">
               <input
                 type="search"
-                placeholder="Search..."
+                value={searchQuery}
                 className="form-control p-2"
+                placeholder="Buscar..."
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
             <div className="col-lg-2 col-6 col-md-3">
@@ -69,7 +87,7 @@ const MainProducts = () => {
           ) : (
             <div className="row">
               {/* Products */}
-              {products.map((product) => (
+              {search(products).map((product) => (
                 <Product product={product} key={product._id} />
               ))}
             </div>
