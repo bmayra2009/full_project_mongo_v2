@@ -5,6 +5,7 @@ import {
   CUSTOMER_LIST_SUCCESS,
 } from "../Constants/CustomerConstants";
 import axios from "axios";
+import { logout } from "./userActions";
 
 // ALL CUSTOMER
 export const listCustomer = () => async (dispatch, getState) => {
