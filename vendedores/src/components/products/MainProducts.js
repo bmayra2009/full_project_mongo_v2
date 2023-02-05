@@ -10,7 +10,7 @@ const MainProducts = () => {
   const dispatch = useDispatch();
 
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchParam] = useState(["description"]);
+  const [searchParam] = useState(["name","description"]);
 
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
