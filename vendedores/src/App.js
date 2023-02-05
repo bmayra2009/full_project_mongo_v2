@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/productScreen";
 import CustomerScreen from "./screens/customerScreen";
+import CustomerScreenCart from "./screens/customerScreenCart";
 import SingleProduct from "./screens/SingleProduct";
 import OrderScreen from "./screens/OrderScreen";
 import OrderDetailScreen from "./screens/OrderDetailScreen";
@@ -37,6 +38,7 @@ function App() {
           <PrivateRouter path="/" component={HomeScreen} exact />
           <PrivateRouter path="/products" component={ProductScreen} />
           <PrivateRouter path="/customers" component={CustomerScreen} />
+          <PrivateRouter path="/customerscart" component={CustomerScreenCart} />
           <PrivateRouter path="/productos/:id" component={SingleProduct} />
           <PrivateRouter path="/orders" component={OrderScreen} />
           <PrivateRouter path="/order/:id" component={OrderDetailScreen} />
