@@ -23,7 +23,7 @@ const CartScreen = ({ match, location, history }) => {
   }, [dispatch, productId, qty]);
 
   const checkOutHandler = () => {
-    history.push("/login?redirect=shipping");
+    history.push("/customerscart");
   };
 
   const removeFromCartHandle = (id) => {
