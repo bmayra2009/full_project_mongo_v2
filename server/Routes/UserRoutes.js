@@ -1,6 +1,6 @@
 import express from "express";
 import asyncHandler from "express-async-handler";
-import { protect, admin } from "../Middleware/AuthMiddleware.js";
+import { protect} from "../Middleware/AuthMiddleware.js";
 import generateToken from "../utils/generateToken.js";
 import User from "./../Models/UserModel.js";
 
@@ -118,7 +118,6 @@ userRouter.put(
 userRouter.get(
   "/",
   protect,
-  admin,
   asyncHandler(async (req, res) => {
     const users = await User.find({});
     res.json(users);
