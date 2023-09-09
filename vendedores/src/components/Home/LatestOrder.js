@@ -8,7 +8,7 @@ const LatestOrder = (props) => {
   const { loading, error, orders } = props;
   return (
     <div className="card-body">
-      <h4 className="card-title">New orders</h4>
+      <h4 className="card-title">Últimos pedidos</h4>
       {loading ? (
         <Loading />
       ) : error ? (
@@ -20,9 +20,9 @@ const LatestOrder = (props) => {
               {orders.slice(0, 5).map((order) => (
                 <tr key={order._id}>
                   <td>
-                    <b>{order.user.name}</b>
+                    <b>{order.customer.name}</b>
                   </td>
-                  <td>{order.user.email}</td>
+                  <td>{order.customer.city}</td>
                   <td>${order.totalPrice}</td>
                   <td>
                     {order.isPaid ? (
@@ -31,7 +31,7 @@ const LatestOrder = (props) => {
                       </span>
                     ) : (
                       <span className="badge rounded-pill alert-danger">
-                        Not Paid
+                        Por pagar
                       </span>
                     )}
                   </td>

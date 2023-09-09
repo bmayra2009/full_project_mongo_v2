@@ -10,10 +10,9 @@ const OrderDetailInfo = (props) => {
             <i className="text-success fas fa-user"></i>
           </span>
           <div className="text">
-            <h6 className="mb-1">Customer</h6>
+            <h6 className="mb-1">Cliente</h6>
             <p className="mb-1">
-              {order.user.name} <br />
-              <a href={`mailto:${order.user.email}`}>{order.user.email}</a>
+              {order.customer.name} <br />
             </p>
           </div>
         </article>
@@ -24,10 +23,9 @@ const OrderDetailInfo = (props) => {
             <i className="text-success fas fa-truck-moving"></i>
           </span>
           <div className="text">
-            <h6 className="mb-1">Order info</h6>
+            <h6 className="mb-1">Vendedor</h6>
             <p className="mb-1">
-              Shipping: {order.shippingAddress.country} <br /> Pay method:{" "}
-              {order.paymentMethod}
+              {order.user.name} 
             </p>
           </div>
         </article>
@@ -38,12 +36,11 @@ const OrderDetailInfo = (props) => {
             <i className="text-success fas fa-map-marker-alt"></i>
           </span>
           <div className="text">
-            <h6 className="mb-1">Deliver to</h6>
+            <h6 className="mb-1">Lugar entrega</h6>
             <p className="mb-1">
-              Address: {order.shippingAddress.city}
+              Ciudad: {order.customer.city}
               <br />
-              {order.shippingAddress.address}
-              <br /> {order.shippingAddress.postalCode}
+              Direccion: {order.customer.address}
             </p>
           </div>
         </article>

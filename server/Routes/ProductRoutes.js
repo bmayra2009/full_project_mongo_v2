@@ -32,7 +32,6 @@ productRoute.get(
 productRoute.get(
   "/all",
   protect,
-  admin,
   asyncHandler(async (req, res) => {
     const products = await Product.find({}).sort({ _id: -1 });
     res.json(products);

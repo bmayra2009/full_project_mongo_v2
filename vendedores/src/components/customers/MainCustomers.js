@@ -1,28 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Product from "./Product";
+import Customer from "./Customer";
 import { useDispatch, useSelector } from "react-redux";
-import { listProducts } from "../../Redux/Actions/ProductActions";
+import { listCustomer } from "../../Redux/Actions/customerActions";
 import Loading from "../LoadingError/Loading";
 import Message from "../LoadingError/Error";
 
-const MainProducts = () => {
+const MainCustomers = () => {
   const dispatch = useDispatch();
 
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchParam] = useState(["name","description"]);
+  const [searchParam] = useState(["name"]);
 
-  const productList = useSelector((state) => state.productList);
-  const { loading, error, products } = productList;
+  const customerList = useSelector((state) => state.customerList);
+  const { loading, error, customers } = customerList;
 
-  const productDelete = useSelector((state) => state.productDelete);
-  const { error: errorDelete, success: successDelete } = productDelete;
+  const customerDelete = useSelector((state) => state.customerDelete);
+  const { error: errorDelete, success: successDelete } = customerDelete;
 
-  function search(products) {
-    return products.filter((product) => {
-        return searchParam.some((newProduct) => {
+  function search(customers) {
+    return customers.filter((customer) => {
+        return searchParam.some((newCustomer) => {
             return (
-              product[newProduct]
+              customer[newCustomer]
                     .toString()
                     .toLowerCase()
                     .indexOf(searchQuery.toLowerCase()) > -1
@@ -32,18 +32,13 @@ const MainProducts = () => {
   }
 
   useEffect(() => {
-    dispatch(listProducts());
+    dispatch(listCustomer());
   }, [dispatch, successDelete]);
 
   return (
     <section className="content-main">
       <div className="content-header">
-        <h2 className="content-title">Productos</h2>
-        <div>
-          <Link to="/addproduct" className="btn btn-primary">
-            Create new
-          </Link>
-        </div>
+        <h2 className="content-title">Clientes</h2>
       </div>
 
       <div className="card mb-4 shadow-sm">
@@ -66,13 +61,6 @@ const MainProducts = () => {
                 <option>Something else</option>
               </select>
             </div>
-            <div className="col-lg-2 col-6 col-md-3">
-              <select className="form-select">
-                <option>Latest added</option>
-                <option>Cheap first</option>
-                <option>Most viewed</option>
-              </select>
-            </div>
           </div>
         </header>
 
@@ -86,9 +74,9 @@ const MainProducts = () => {
             <Message variant="alert-danger">{error}</Message>
           ) : (
             <div className="row">
-              {/* Products */}
-              {search(products).map((product) => (
-                <Product product={product} key={product._id} />
+              {/* Customers */}
+              {search(customers).map((customer) => (
+                <Customer customer={customer} key={customer._id} />
               ))}
             </div>
           )}
@@ -128,4 +116,4 @@ const MainProducts = () => {
   );
 };
 
-export default MainProducts;
+export default MainCustomers;

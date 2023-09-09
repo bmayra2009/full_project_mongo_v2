@@ -49,12 +49,12 @@ const OrderDetailmain = (props) => {
                 <span>
                   <i className="far fa-calendar-alt mx-2"></i>
                   <b className="text-white">
-                    {moment(order.createdAt).format("llll")}
+                    Fecha venta: {moment(order.createdAt).format("llll")}
                   </b>
                 </span>
                 <br />
                 <small className="text-white mx-3 ">
-                  Order ID: {order._id}
+                  ID Venta: {order._id}
                 </small>
               </div>
               <div className="col-lg-6 col-md-6 ms-auto d-flex justify-content-end align-items-center">
@@ -62,11 +62,9 @@ const OrderDetailmain = (props) => {
                   className="form-select d-inline-block"
                   style={{ maxWidth: "200px" }}
                 >
-                  <option>Change status</option>
-                  <option>Awaiting payment</option>
-                  <option>Confirmed</option>
-                  <option>Shipped</option>
-                  <option>Delivered</option>
+                  <option>Cambiar Estado</option>
+                  <option>Abono</option>
+                  <option>Pagado</option>
                 </select>
                 <Link className="btn btn-success ms-2" to="#">
                   <i className="fas fa-print"></i>
@@ -89,7 +87,7 @@ const OrderDetailmain = (props) => {
                 <div className="box shadow-sm bg-light">
                   {order.isDelivered ? (
                     <button className="btn btn-success col-12">
-                      DELIVERED AT ({" "}
+                      ENTREGADO EL: ({" "}
                       {moment(order.isDeliveredAt).format("MMM Do YY")})
                     </button>
                   ) : (
@@ -99,7 +97,7 @@ const OrderDetailmain = (props) => {
                         onClick={deliverHandler}
                         className="btn btn-dark col-12"
                       >
-                        MARK AS DELIVERED
+                        Marcar como entregado
                       </button>
                     </>
                   )}

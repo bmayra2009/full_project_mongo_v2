@@ -1,11 +1,16 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import $ from "jquery";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector  } from "react-redux";
 import { logout } from "../Redux/Actions/userActions";
 
 const Header = () => {
   const dispatch = useDispatch();
+
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
+
+
   useEffect(() => {
     $("[data-trigger]").on("click", function (e) {
       e.preventDefault();
@@ -38,43 +43,23 @@ const Header = () => {
               list="search_terms"
               type="text"
               className="form-control"
-              placeholder="Search term"
+              placeholder="Buscar"
             />
             <button className="btn btn-light bg" type="button">
               <i className="far fa-search"></i>
             </button>
           </div>
           <datalist id="search_terms">
-            <option value="Products" />
-            <option value="New orders" />
-            <option value="Apple iphone" />
-            <option value="Ahmed Hassan" />
+            <option value="Productos" />
           </datalist>
         </form>
       </div>
       <div className="col-nav">
-        <button
-          className="btn btn-icon btn-mobile me-auto"
-          data-trigger="#offcanvas_aside"
-        >
-          <i className="md-28 fas fa-bars"></i>
-        </button>
+        <Link to="/cart">
+            <i className="fas fa-shopping-bag"></i>
+            <span className="badge">{cartItems.length}</span>
+        </Link>
         <ul className="nav">
-          <li className="nav-item">
-            <Link className={`nav-link btn-icon `} title="Dark mode" to="#">
-              <i className="fas fa-moon"></i>
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link btn-icon" to="#">
-              <i className="fas fa-bell"></i>
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="#">
-              English
-            </Link>
-          </li>
           <li className="dropdown nav-item">
             <Link className="dropdown-toggle" data-bs-toggle="dropdown" to="#">
               <img
@@ -85,17 +70,17 @@ const Header = () => {
             </Link>
             <div className="dropdown-menu dropdown-menu-end">
               <Link className="dropdown-item" to="/">
-                My profile
+                Inicio
               </Link>
               <Link className="dropdown-item" to="#">
-                Settings
+                Perfil
               </Link>
               <Link
                 onClick={logoutHandler}
                 className="dropdown-item text-danger"
                 to="#"
               >
-                Exit
+                Cerrar sesión
               </Link>
             </div>
           </li>
